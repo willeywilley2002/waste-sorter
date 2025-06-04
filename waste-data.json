@@ -1,0 +1,20 @@
+{
+  "apple core": "Compost",
+  "banana peel": "Compost",
+  "plastic bottle": "Recycling",
+  "glass jar": "Recycling",
+  "aluminum can": "Recycling",
+  "pizza box": "Trash",
+  "styrofoam": "Trash",
+  "chip bag": "Trash",
+  "paper": "Recycling",
+  "cardboard": "Recycling",
+  "tea bag": "Compost",
+  "napkin": "Compost",
+  "coffee cup": "Trash",
+  "egg shell": "Compost",
+  "milk carton": "Recycling",
+  "soda can": "Recycling",
+  "food scraps": "Compost",
+  "plastic bag": "Trash"
+}
