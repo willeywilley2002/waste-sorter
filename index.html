@@ -1,37 +1,55 @@
-<script>
-  let wasteDatabase = {};
-  let dataLoaded = false;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Where Does It Go?</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+    input { padding: 10px; width: 300px; font-size: 16px; }
+    button { padding: 10px 20px; font-size: 16px; margin-left: 10px; }
+    #result { margin-top: 20px; font-size: 24px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Where does it go?</h1>
+  <input type="text" id="itemInput" placeholder="Type a waste item..." />
+  <button onclick="checkItem()">Submit</button>
+  <div id="result"></div>
 
-  // Load the waste data from the JSON file
-  fetch('waste-data.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+  <script>
+    const wasteDatabase = {
+      "apple core": "Compost",
+      "banana peel": "Compost",
+      "plastic bottle": "Recycling",
+      "glass jar": "Recycling",
+      "aluminum can": "Recycling",
+      "pizza box": "Trash",
+      "styrofoam": "Trash",
+      "chip bag": "Trash",
+      "paper": "Recycling",
+      "cardboard": "Recycling",
+      "tea bag": "Compost",
+      "napkin": "Compost",
+      "coffee cup": "Trash",
+      "egg shell": "Compost",
+      "milk carton": "Recycling",
+      "soda can": "Recycling",
+      "food scraps": "Compost",
+      "plastic bag": "Trash"
+    };
+
+    function checkItem() {
+      const input = document.getElementById('itemInput').value.trim().toLowerCase();
+      const resultDiv = document.getElementById('result');
+
+      if (input in wasteDatabase) {
+        resultDiv.textContent = `Put it in: ${wasteDatabase[input]} bin.`;
+      } else {
+        resultDiv.textContent = "Sorry, I don't know where that goes.";
       }
-      return response.json();
-    })
-    .then(data => {
-      wasteDatabase = data;
-      dataLoaded = true;
-    })
-    .catch(error => {
-      console.error("Failed to load waste-data.json:", error);
-    });
-
-  function checkItem() {
-    const input = document.getElementById('itemInput').value.trim().toLowerCase();
-    const resultDiv = document.getElementById('result');
-
-    if (!dataLoaded) {
-      resultDiv.textContent = "Loading waste data... please wait a moment.";
-      return;
     }
+  </script>
+</body>
+</html>
 
-    if (input in wasteDatabase) {
-      resultDiv.textContent = `Put it in: ${wasteDatabase[input]} bin.`;
-    } else {
-      resultDiv.textContent = "Sorry, I don't know where that goes.";
-    }
-  }
-</script>
 
