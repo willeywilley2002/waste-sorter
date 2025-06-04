@@ -1,36 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Where Does It Go?</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-    input { padding: 10px; width: 300px; font-size: 16px; }
-    button { padding: 10px 20px; font-size: 16px; margin-left: 10px; }
-    #result { margin-top: 20px; font-size: 24px; font-weight: bold; }
-  </style>
-</head>
-<body>
-
-  <h1>Where does it go?</h1>
-  <input type="text" id="itemInput" placeholder="Type a waste item...">
-  <button onclick="checkItem()">Submit</button>
-
-  <div id="result"></div>
-
 <script>
   let wasteDatabase = {};
+  let dataLoaded = false;
 
-  // Load waste data from the JSON file
+  // Load the waste data from the JSON file
   fetch('waste-data.json')
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
     .then(data => {
       wasteDatabase = data;
+      dataLoaded = true;
+    })
+    .catch(error => {
+      console.error("Failed to load waste-data.json:", error);
     });
 
   function checkItem() {
     const input = document.getElementById('itemInput').value.trim().toLowerCase();
     const resultDiv = document.getElementById('result');
+
+    if (!dataLoaded) {
+      resultDiv.textContent = "Loading waste data... please wait a moment.";
+      return;
+    }
 
     if (input in wasteDatabase) {
       resultDiv.textContent = `Put it in: ${wasteDatabase[input]} bin.`;
@@ -39,3 +34,4 @@
     }
   }
 </script>
+
