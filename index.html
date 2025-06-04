@@ -71,3 +71,72 @@
       "glass bottle": "Recycling",
       "glass jar": "Recycling",
       "aluminum can": "Recycling",
+      "soda can": "Recycling",
+      "tin can": "Recycling",
+      "can": "Recycling",
+      "paper": "Recycling",
+      "clean paper": "Recycling",
+      "printer paper": "Recycling",
+      "office paper": "Recycling",
+      "cardboard": "Recycling",
+      "flattened box": "Recycling",
+      "paperboard": "Recycling",
+      "milk carton": "Recycling",
+      "juice carton": "Recycling",
+      "carton": "Recycling",
+
+      "plastic bag": "Trash",
+      "grocery bag": "Trash",
+      "shopping bag": "Trash",
+      "chip bag": "Trash",
+      "snack bag": "Trash",
+      "candy wrapper": "Trash",
+      "styrofoam": "Trash",
+      "foam container": "Trash",
+      "takeout container": "Trash",
+      "diaper": "Trash",
+      "used diaper": "Trash",
+      "pet waste": "Trash",
+      "dog poop": "Trash",
+      "cat litter": "Trash",
+      "clothes": "Trash",
+      "old clothes": "Trash",
+      "worn out clothing": "Trash",
+      "furniture": "Trash",
+      "carpet": "Trash",
+      "rugs": "Trash",
+      "rocks": "Trash",
+      "soil": "Trash",
+      "dirt": "Trash",
+      "cigarette butt": "Trash",
+      "ash": "Trash",
+      "ashes": "Trash",
+      "hazardous waste": "Trash",
+      "batteries": "Trash",
+      "lightbulb": "Trash",
+      "broken mirror": "Trash",
+      "broken glass": "Trash",
+      "ceramic": "Trash",
+      "plastic utensils": "Trash",
+      "disposable fork": "Trash",
+      "disposable spoon": "Trash",
+      "biodegradable bag": "Trash",
+      "compostable cup": "Trash",
+      "compostable plate": "Trash",
+      "biodegradable utensils": "Trash"
+    };
+
+    function checkItem() {
+      const input = document.getElementById('itemInput').value.trim().toLowerCase();
+      const resultDiv = document.getElementById('result');
+
+      if (input in wasteDatabase) {
+        resultDiv.textContent = `Put it in: ${wasteDatabase[input]} bin.`;
+      } else {
+        resultDiv.textContent = "Sorry, I don't know where that goes.";
+      }
+    }
+  </script>
+</body>
+</html>
+
