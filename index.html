@@ -18,55 +18,28 @@
 
   <div id="result"></div>
 
-  <script>
-    const wasteDatabase = {
-      "apple core": "Compost",
-      "banana peel": "Compost",
-      "plastic bottle": "Recycling",
-      "glass jar": "Recycling",
-      "aluminum can": "Recycling",
-      "styrofoam": "Trash",
-      "chip bag": "Trash",
-      "paper": "Recycling",
-      "cardboard": "Recycling",
-      "tea bag": "Compost",
-      "napkin": "Compost",
-      "food scraps": "Compost",
-      "soiled paper towels": "Compost", 
-      "plant trimmings": "Compost", 
-      "yard waste": "Compost", 
-      "USD catering bamboo utensils": "Compost", 
-      "USD catering bamboo plates": "Compost", 
-      "pizza boxes": "Compost",
-      "USD catering plate": "Compost", 
-      "USD catering utensil": "Compost", 
-      "glass bottle": "Recycling",
-      "plastic bottle": "Recycling",
-      "plastic iced coffee cup": "Recycling",
-      "paper coffee cup": "Trash",
-      "plastic bag": "Trash",  
-      "to-go box with plastic liner": "Trash", 
-      "Biodegradable plastic": "Trash",
-      "Compostable plastic": "Trash", 
-      "plastic container": "Recycling",
-      "cardboard": "Recycling",
-      "magazines": "Recycling",
-      "plastic film": "Trash",
-      "cling wrap": "Trash", 
-      "to-go box": "Trash",
-    };
+<script>
+  let wasteDatabase = {};
 
-    function checkItem() {
-      const input = document.getElementById('itemInput').value.trim().toLowerCase();
-      const resultDiv = document.getElementById('result');
+  // Load waste data from the JSON file
+  fetch('waste-data.json')
+    .then(response => response.json())
+    .then(data => {
+      wasteDatabase = data;
+    });
 
-      if (input in wasteDatabase) {
-        resultDiv.textContent = `Put it in: ${wasteDatabase[input]} bin.`;
-      } else {
-        resultDiv.textContent = "Sorry, I don't know where that goes.";
-      }
+  function checkItem() {
+    const input = document.getElementById('itemInput').value.trim().toLowerCase();
+    const resultDiv = document.getElementById('result');
+
+    if (input in wasteDatabase) {
+      resultDiv.textContent = `Put it in: ${wasteDatabase[input]} bin.`;
+    } else {
+      resultDiv.textContent = "Sorry, I don't know where that goes.";
     }
-  </script>
+  }
+</script>
+
 
 </body>
 </html>
